@@ -1,42 +1,56 @@
 # Physical AI Meetup — website
 
-Sponsor-facing landing page and chapter linktree for the Physical AI Meetup community
-(Sydney · Melbourne · Perth, with New Zealand planned).
+Sponsor-facing landing page and chapter directory for the Physical AI Meetup community
+(Sydney · Melbourne · Perth · Canberra · Auckland, with Brisbane, Adelaide and Christchurch flagged
+as coming soon).
 
-Plain static HTML and CSS. No build step, no framework, no dependencies — what's in this repo is
-exactly what gets served.
+Plain static HTML and CSS. No build step, no framework, no dependencies, no third-party requests —
+what's in this repo is exactly what gets served.
 
 ## Structure
 
 ```
 index.html                  the whole page
-assets/css/style.css        all styling (brand colours defined at the top)
+assets/css/style.css        all styling; design tokens at the top
+assets/css/fonts.css        @font-face rules for the self-hosted fonts
+assets/fonts/               Syne, Inter, JetBrains Mono (Latin subsets, woff2)
 assets/icons/               favicons + nav logo, generated from the source logo
-assets/images/              photo + sponsor-logo placeholders — see IMAGES.md
+assets/images/              photos and sponsor logos — see IMAGES.md
 assets/source/              original logo artwork (not used directly by the page)
 tools/make-icons.py         regenerates the favicon set if the logo changes
 site.webmanifest            icons + theme colour for mobile home-screen installs
 _headers                    Cloudflare Pages caching and security headers
 robots.txt                  allows all crawlers
+_archive/                   old builds and original full-size photos (gitignored)
 ```
+
+## Design system
+
+Tokens are declared at the top of `assets/css/style.css` and match the design language of the
+existing physicalaimeetup.com build, so anything added later stays consistent:
+
+```css
+--pai-accent:            #00C8D7;   /* cyan   */
+--pai-accent-secondary:  #7040C8;   /* purple */
+--pai-bg:                #080E1A;   /* navy   */
+--pai-surface-card:      #111E2D;
+--pai-font-display:      'Syne';        /* headings, city names, stat numbers */
+--pai-font-body:         'Inter';       /* body copy, buttons, nav */
+--pai-font-mono:         'JetBrains Mono'; /* eyebrows, labels, captions */
+```
+
+Fonts are self-hosted in `assets/fonts/` rather than pulled from Google — same files, but no
+third-party request and nothing to break if that CDN is blocked. Only the Latin subset downloads
+for normal English copy; the `-ext` files load only if an extended-Latin character appears.
 
 ## Editing
 
-**Replacing photos** — see [IMAGES.md](IMAGES.md). Keep the filename, drop the file in, done.
+**Photos** — see [IMAGES.md](IMAGES.md). Keep the filename, drop the file in, done.
 
-**Brand colours** — the top of `assets/css/style.css`:
+**Content that still needs your input** — search `index.html` for `TODO`:
 
-```css
---accent:   #4FC8EC;   /* logo cyan   */
---accent-2: #7A2BD6;   /* logo purple */
-```
-
-Both are sampled from the official logo, so the site matches the mark.
-
-**Links that still need filling in** — search `index.html` for `TODO`:
-
-- Meetup group URL and Eventbrite link for each of Sydney, Melbourne, Perth
-- the contact address in the "Email Us" button (currently `hello@example.com`)
+- the contact address behind "Request an information packet" and "Let's collaborate"
+  (currently `hello@physicalaimeetup.com`, which may not be a real inbox)
 
 ## Previewing locally
 
@@ -46,12 +60,7 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-Opening `index.html` by double-clicking mostly works too, but a local server matches how
-Cloudflare will actually serve it.
-
 ## Deployment
 
-Hosted on Cloudflare Pages, connected to this GitHub repo. Every push to `main` triggers a
-redeploy — there's no build command and the output directory is the repo root.
-
-See [DEPLOY.md](DEPLOY.md) for the full setup and custom-domain steps.
+Static hosting on Cloudflare Pages, connected to this GitHub repo. Every push to `main` redeploys —
+no build command, output directory is the repo root. See [DEPLOY.md](DEPLOY.md).
