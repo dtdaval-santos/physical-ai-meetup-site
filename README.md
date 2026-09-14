@@ -47,10 +47,12 @@ for normal English copy; the `-ext` files load only if an extended-Latin charact
 
 **Photos** — see [IMAGES.md](IMAGES.md). Keep the filename, drop the file in, done.
 
-**Content that still needs your input** — search `index.html` for `TODO`:
-
-- the contact address behind "Request an information packet" and "Let's collaborate"
-  (currently `hello@physicalaimeetup.com`, which may not be a real inbox)
+**Contact** — both sponsorship buttons open the visitor's mail client addressed to
+`aiedc.group@outlook.com` with `nikki.davalsantos@avnet.com` on cc, and a subject line naming which
+button they pressed ("sponsorship information packet" vs "organising & city coordination") so the
+two enquiry types are easy to tell apart in the inbox. To change either address, edit the two
+`mailto:` links in `index.html` — the cc address is url-encoded (`%40` for `@`) and the two
+parameters are joined with `&amp;`, which is how an `&` is written inside an HTML attribute.
 
 ## Previewing locally
 
