@@ -15,7 +15,7 @@ says what each filename is used for.
 | `gallery-1.jpg` | 900 × 600 | Gallery tile 4 — "Full rooms, every city" | A packed room |
 | `gallery-2.jpg` | 900 × 600 | Gallery tile 5 — "Speakers & demos" | Speaker or demo in progress |
 | `gallery-3.jpg` | 900 × 600 | Gallery tile 6 — "Expert tech talks" | A talk in progress |
-| `sponsor-logo-1.png` | 400 × 160 | Sponsor wall — AMD ✅ done | Sponsor logos, **transparent PNG**, logo centred with breathing room |
+| `sponsor-logo-1.png` | 800 × 320 | Sponsor wall — AMD ✅ done (white version) | Sponsor logos, **white/light on transparent PNG** — the wall is a dark background |
 | `sponsor-logo-2.png` | 400 × 160 | Sponsor wall — Avnet ✅ done | " |
 | `sponsor-logo-3.png` | 400 × 160 | Sponsor wall — element14 ✅ done | " |
 | `sponsor-logo-4.png` … `-6.png` | 400 × 160 | Spare slots — files exist, not yet in the page | " |
@@ -32,7 +32,7 @@ usable shots, so a mixed set would look unfinished. The gallery is where photos 
 The wall currently shows three: AMD, Avnet, element14. The grid is `auto-fit`, so rows reflow
 on their own — you never need to touch the CSS.
 
-To add a fourth, save its transparent PNG as `assets/images/sponsor-logo-4.png` (400 × 160, logo
+To add a fourth, save its transparent PNG (white or light-coloured, since the wall is dark) as `assets/images/sponsor-logo-4.png` (400 × 160, logo
 centred) and add one line in `index.html` inside `<div class="sponsor-logos">`:
 
 ```html
