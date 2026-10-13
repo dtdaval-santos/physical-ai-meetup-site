@@ -75,7 +75,7 @@ and compare the newest row in Deployments against `git log -1`.
 |---|---|
 | Pushed but the site didn't change | Did the push succeed (`git status -sb`)? Is there a new row in Deployments? Is it branch `main`? Hard-refresh. |
 | Deployment shows **Failed** | Open the build log from the Deployments row. Check *Settings → Builds* still matches the table in §1. |
-| Old image still showing | Browser cache — hard-refresh, or rename the file (assets are cached for a year, see `_headers`). |
+| Old image still showing | Assets are cached for a year as `immutable` (see `_headers`), so a browser that has seen the old file keeps it even after a deploy — and so do your visitors. **When you replace an image but keep its filename, change its `src` in `index.html` to add or bump a version suffix, e.g. `sponsor-logo-1.png?v=3`** (or give the file a new name). A hard-refresh only fixes your own browser. |
 | Page looks unstyled / broken images | A filename or path changed. Paths are case-sensitive on the server (`Logo.png` ≠ `logo.png`). |
 | A file you expected isn't live | Check `.gitignore` — `_archive/`, `Claude outputs/` and `node_modules/` never deploy. |
 
